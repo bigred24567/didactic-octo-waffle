@@ -1,0 +1,17 @@
+import socket
+
+def port_scan(target, ports=[22, 80, 443]):
+    print(f"Scanning {target}...")
+    for port in ports:
+        s = socket.socket()
+        s.settimeout(0.5)
+        try:
+            s.connect((target, port))
+            print(f"Port {port} is OPEN")
+        except:
+            print(f"Port {port} is closed")
+        s.close()
+
+if __name__ == "__main__":
+    target = input("Enter target IP: ")
+    port_scan(target)
